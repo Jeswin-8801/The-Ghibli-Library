@@ -1,2 +1,3 @@
-# ghibli-prime.lib
-A full stack movie library application (Spring Boot + MongoDB + React)
+# The-Ghibli-Library
+
+A full-stack application that lets you browse through the popular Ghibli movie library  (Spring Boot + MongoDB + React)
