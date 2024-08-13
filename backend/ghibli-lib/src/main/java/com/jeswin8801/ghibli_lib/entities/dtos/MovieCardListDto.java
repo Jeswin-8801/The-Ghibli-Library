@@ -1,4 +1,4 @@
-package com.jeswin8801.ghibli_lib.dto;
+package com.jeswin8801.ghibli_lib.entities.dtos;
 
 import lombok.Builder;
 import lombok.Data;
