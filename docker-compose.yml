@@ -1,0 +1,40 @@
+services:
+
+  mongo-db:
+    image: mongo
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - mongo-db
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: $MONGODB_USER
+      ME_CONFIG_MONGODB_ADMINPASSWORD: $MONGODB_PASSWORD
+      ME_CONFIG_MONGODB_URL: mongodb://$MONGODB_USER:$MONGODB_PASSWORD@mongo:$MONGODB_DOCKER_PORT/
+      ME_CONFIG_BASICAUTH: false
+
+  spring-boot:
+    depends_on:
+      - mongo-db
+    build: ./backend/ghibli-lib
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+              "spring.data.mongodb.uri" : "mongodb://$MONGODB_USER:$MONGODB_PASSWORD@mongo-db:$MONGODB_DOCKER_PORT/$MONGODB_DATABASE?authSource=admin"
+            }'
+    stdin_open: true
+    tty: true
