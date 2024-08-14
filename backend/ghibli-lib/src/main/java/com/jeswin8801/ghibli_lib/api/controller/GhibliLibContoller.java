@@ -26,22 +26,22 @@ public class GhibliLibContoller {
 
     @GetMapping("fetch-all-movie-cards")
     public ResponseEntity<?> fetchAllMovieCards() {
-        return ResponseEntity.ok(movieListService.retrieveAllMovieCards());
+        return movieListService.retrieveAllMovieCards();
     }
 
     @GetMapping("fetch-all-movie-names-like")
     public ResponseEntity<?> fetchAllMovieNamesLike(@RequestParam String name) {
-        return ResponseEntity.ok(movieListService.retrieveAllMovieNamesLike(name));
+        return movieListService.retrieveAllMovieNamesLike(name);
     }
 
     @GetMapping("fetch-all-movie-cards-like")
     public ResponseEntity<?> fetchAllMovieCardsLike(@RequestParam String name) {
-        return ResponseEntity.ok(movieListService.retrieveMovieCardsByName(name));
+        return movieListService.retrieveMovieCardsByName(name);
     }
 
     @GetMapping("fetch-movie-info")
     public ResponseEntity<?> fetchMovieInfo(@RequestParam String name) {
-        return ResponseEntity.ok(movieCrudService.get(name));
+        return movieCrudService.get(name);
     }
 
     @PostMapping("add-movie")

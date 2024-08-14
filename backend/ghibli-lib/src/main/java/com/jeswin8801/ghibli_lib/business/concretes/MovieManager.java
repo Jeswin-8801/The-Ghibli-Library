@@ -1,6 +1,7 @@
 package com.jeswin8801.ghibli_lib.business.concretes;
 
 import com.jeswin8801.ghibli_lib.business.abstracts.MovieCrudService;
+import com.jeswin8801.ghibli_lib.business.abstracts.ResponseService;
 import com.jeswin8801.ghibli_lib.entities.converters.MovieInfoConverter;
 import com.jeswin8801.ghibli_lib.entities.dtos.MovieInfoDto;
 import com.jeswin8801.ghibli_lib.repository.GhibliLibRepository;
@@ -11,6 +12,7 @@ import com.jeswin8801.ghibli_lib.utilities.results.SuccessDataResult;
 import com.jeswin8801.ghibli_lib.utilities.results.SuccessResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,6 +24,9 @@ public class MovieManager implements MovieCrudService {
     @Autowired
     private GhibliLibRepository repository;
 
+    @Autowired
+    private ResponseService responseService;
+
     private final MovieInfoConverter movieInfoConverter;
 
     public MovieManager(MovieInfoConverter movieInfoConverter) {
@@ -29,19 +34,24 @@ public class MovieManager implements MovieCrudService {
     }
 
     @Override
-    public Result get(String name) {
+    public ResponseEntity<?> get(String name) {
         Optional<Movie> movie = repository.findById(name);
         if (movie.isPresent())
-            return new SuccessDataResult<>(movie.get(), String.format("Movie with name %s found", name));
+            return responseService.returnDataResponseOnSuccess(
+                    new SuccessDataResult<>(
+                            movie.get(),
+                            String.format("Movie with name [%s] found", name)
+                    )
+            );
         else
-            return new ErrorResult("Movie not found");
+            return responseService.returnFailureResponse(new ErrorResult("Movie not found"));
     }
 
     @Override
     public Result add(MovieInfoDto movieInfoDto) {
         Movie movie = movieInfoConverter.registerMovieInfoDtoToMovieInfo(movieInfoDto);
         repository.save(movie);
-        return new SuccessResult("Movie Added");
+        return new SuccessResult(String.format("Movie [%s] Added", movie.getName()));
     }
 
     @Override
