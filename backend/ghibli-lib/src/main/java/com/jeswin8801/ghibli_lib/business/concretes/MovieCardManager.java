@@ -7,7 +7,6 @@ import com.jeswin8801.ghibli_lib.entities.concretes.MovieTitle;
 import com.jeswin8801.ghibli_lib.repository.GhibliLibRepository;
 import com.jeswin8801.ghibli_lib.utilities.UtilFunctions;
 import com.jeswin8801.ghibli_lib.utilities.results.ErrorResult;
-import com.jeswin8801.ghibli_lib.utilities.results.Result;
 import com.jeswin8801.ghibli_lib.utilities.results.SuccessDataResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
