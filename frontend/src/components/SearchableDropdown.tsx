@@ -42,13 +42,6 @@ function SearchableDropdown({ api_url, searchMovies }: Search) {
         } else setMovieNamesList(Array());
     };
 
-    const filter = (movieNamesList: []) => {
-        return movieNamesList.filter(
-            (movieItem: string) =>
-                movieItem.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-        );
-    };
-
     const selectOption = (option: string) => {
         setSearchTerm(option);
         setIsOpen(false);
@@ -105,7 +98,7 @@ function SearchableDropdown({ api_url, searchMovies }: Search) {
 
             {isOpen && movieNamesList.length > 0 ? (
                 <div className="dropdown">
-                    {filter(movieNamesList).map((option: string, index) => {
+                    {movieNamesList.map((option: string, index: Number) => {
                         return (
                             <div
                                 onClick={() => selectOption(option)}
