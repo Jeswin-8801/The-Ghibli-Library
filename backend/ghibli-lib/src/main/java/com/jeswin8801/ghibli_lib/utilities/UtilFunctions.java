@@ -13,14 +13,18 @@ public class UtilFunctions {
         StringBuilder stringBuilder = new StringBuilder(name);
         int length = stringBuilder.length();
         for (int i = 0; i < length; i++) {
+            char currentChar = stringBuilder.charAt(i);
             if (i == 0 || stringBuilder.charAt(i - 1) == ' ') {
-                char currentChar = stringBuilder.charAt(i);
                 stringBuilder.deleteCharAt(i);
                 stringBuilder.insert(
                         i,
                         String.format("[%s%s]", currentChar, Character.toUpperCase(currentChar))
                 );
                 length += 3;
+            } else if ((currentChar == 's' || currentChar == 'S') && (i == length - 1 || stringBuilder.charAt(i + 1) == ' ')) {
+                stringBuilder.insert(i, "'?");
+                length += 2;
+                i += 2;
             }
         }
         stringBuilder.insert(0, ".*");

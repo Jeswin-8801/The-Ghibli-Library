@@ -51,7 +51,9 @@ public class MovieManager implements MovieCrudService {
     public Result add(MovieInfoDto movieInfoDto) {
         Movie movie = movieInfoConverter.registerMovieInfoDtoToMovieInfo(movieInfoDto);
         repository.save(movie);
-        return new SuccessResult(String.format("Movie [%s] Added", movie.getName()));
+        String logMessage = String.format("Movie [%s] added successfully", movie.getName());
+        log.info(logMessage);
+        return new SuccessResult(logMessage);
     }
 
     @Override
