@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import GhibliIcon from "./assets/studio-ghibli-logo.svg";
 import MovieCard from "./components/MovieCard";
