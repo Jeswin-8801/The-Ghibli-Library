@@ -1,24 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import SearchIcon from "./assets/search.svg";
 import GhibliIcon from "./assets/studio-ghibli-logo.svg";
 import MovieCard from "./components/MovieCard";
+import SearchableDropdown from "./components/SearchableDropdown";
 
-const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
+const API_URL = `http://localhost:6868`;
 
 function App() {
-    const [searchTerm, setSearchTerm] = useState("");
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        searchMovies("Akira");
+        fetchAllMovieCards();
     }, []);
 
-    const searchMovies = async (title: string) => {
-        const response = await fetch(`${API_URL}&s=${title}`);
-        const data = await response.json();
+    const searchMovies = async (searchString: string) => {
+        const response = await fetch(
+            `${API_URL}/fetch-all-movie-cards-like?name=${searchString}`
+        );
+        if (response.status === 204) {
+            setMovies([]);
+        } else {
+            const data = await response.json();
+            setMovies(data);
+        }
+    };
 
-        setMovies(data.Search);
+    const fetchAllMovieCards = async () => {
+        const response = await fetch(`${API_URL}/fetch-all-movie-cards`);
+        const data = await response.json();
+        setMovies(data);
     };
 
     return (
@@ -27,26 +37,12 @@ function App() {
                 <img src={GhibliIcon} />
             </div>
 
-            <div className="search">
-                <input
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") searchMovies(searchTerm);
-                    }}
-                    placeholder="Search for movies"
-                />
-                <img
-                    src={SearchIcon}
-                    alt="search"
-                    onClick={() => searchMovies(searchTerm)}
-                />
-            </div>
+            <SearchableDropdown api_url={API_URL} searchMovies={searchMovies} />
 
             {movies?.length > 0 ? (
                 <div className="container">
-                    {movies.map((media) => (
-                        <MovieCard media={media} />
+                    {movies.map((media, index) => (
+                        <MovieCard key={index} media={media} />
                     ))}
                 </div>
             ) : (
@@ -59,3 +55,7 @@ function App() {
 }
 
 export default App;
+
+// https://www.formyanime.com/2024/04/studio-ghibli-ultra-widescreen-wallpaper.html
+// https://drive.google.com/drive/folders/1RPcT-Jm0i2h7cIh0OHRnP_sxjU5pYq2h
+// https://myanimelist.net/anime/199/Sen_to_Chihiro_no_Kamikakushi

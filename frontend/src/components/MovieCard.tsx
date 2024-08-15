@@ -5,24 +5,23 @@ interface Results {
 }
 
 interface Media {
-    imdbID: string;
-    Year: string;
-    Poster: string;
-    Title: string;
-    Type: string;
+    name: string;
+    year: Number;
+    poster: string;
+    duration: Number;
 }
 
 function MovieCard({ media }: Results) {
     return (
-        <div className="movie" key={media.imdbID}>
+        <div className="movie">
             <div>
-                <p>{media.Year}</p>
+                <p>{media.year.toString()}</p>
             </div>
 
             <div>
                 <img
-                    src={media.Poster !== "N/A" ? media.Poster : NotFound}
-                    alt={media.Title}
+                    src={media.poster !== "N/A" ? media.poster : NotFound}
+                    alt={media.name}
                     onError={(e) => {
                         e.currentTarget.src = NotFound;
                     }}
@@ -30,8 +29,8 @@ function MovieCard({ media }: Results) {
             </div>
 
             <div>
-                <span>{media.Type}</span>
-                <h3>{media.Title}</h3>
+                <h5>{media.duration.toString()} min</h5>
+                <h3>{media.name}</h3>
             </div>
         </div>
     );

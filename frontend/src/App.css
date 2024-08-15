@@ -16,6 +16,13 @@ body {
   font-family: var(--font-roboto);
   backdrop-filter: blur(3px);
   background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), center / cover fixed url(https://wallpaperset.com/w/full/5/a/8/420614.jpg) no-repeat;
+
+  --scrollbar-width: 5px;
+  --scrollbar-border-radius: 1px;
+  --scrollbar-thumb-color: #2f511ecc;
+  --show-double-buttons: none;
+  --scrollbar-height: 5px;
+  --scrollbar-border-thickness: 0px;
 }
 
 .app {
@@ -46,16 +53,15 @@ body {
   justify-content: center;
 
   padding: 0.75rem 1.75rem;
-  border-radius: 3rem;
   backdrop-filter: blur(2px);
-  background: linear-gradient( to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65) ), center / cover fixed url(./assets/ghibli-ultrawide.jpg) no-repeat;
+  background: linear-gradient( to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85) ), center / cover fixed url(./assets/ghibli-ultrawide.jpg) no-repeat;
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
 }
 
 .search input {
   flex: 1;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-family: var(--font-raleway);
   font-weight: 500;
   padding-right: 1rem;
@@ -69,6 +75,38 @@ body {
   width: 35px;
   height: 35px;
   cursor: pointer;
+}
+
+.dropdown {
+  width: 63%;
+
+  display: block;
+  position: absolute;
+  top: 26rem;
+  z-index: 1;
+  padding-left: 1rem;
+
+  background: rgba(17, 17, 14, 0.822);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  border: 1px solid #686868;
+  margin-top: -1.75rem;
+  border-radius: 1rem;
+}
+
+.dropdown .option {
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  font-family: var(--font-raleway);
+  font-weight: 450;
+  color: rgb(222, 230, 190);
+  cursor: default;
+  display: block;
+  padding: 0.75rem 1.75rem;
+}
+
+.dropdown .option:hover {
+  color: #ffffff;
 }
 
 .empty {
@@ -136,7 +174,7 @@ body {
 
 .movie div:nth-of-type(3) {
   z-index: 2;
-  background-color: #343739;
+  background: linear-gradient( #161d13c3, #1b2418 );
   padding: 16px 24px 24px 24px;
 
   position: absolute;
@@ -154,10 +192,20 @@ body {
   color: #f0f0f0;
 }
 
+.movie div:nth-of-type(3) h5 {
+  margin-top: 2px;
+  font-family: "Roboto Slab", serif;
+  color: #deb693;
+}
+
 .movie div:nth-of-type(3) h3 {
   margin-top: 5px;
   font-family: "Roboto Slab", serif;
   color: #f9d3b4;
+}
+
+.movie:hover div:nth-of-type(1) {
+  opacity: 1;
 }
 
 .movie:hover div:nth-of-type(2) {
@@ -166,10 +214,10 @@ body {
 }
 
 .movie:hover div:nth-of-type(3) {
-  background-color: transparent;
+  background: linear-gradient( rgba(0, 0, 0, 0), #2e4327 );
 }
 
-.movie:hover div:nth-of-type(1) {
+.movie:hover div:nth-of-type(4) {
   opacity: 1;
 }
 
@@ -213,23 +261,26 @@ body {
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 3px;
+::-webkit-scrollbar { 
+  width: var(--scrollbar-width, 20px);
+  height: var(--scrollbar-height, 20px);
 }
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(119, 255, 0, 0.3);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  background: var(--scrollbar-thumb-color, #3B82F6);
+  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+  border-radius: var(--scrollbar-border-radius, 4px); 
 }
-
-::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(39, 78, 6, 0.3);
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color, #1f2d18);
+}
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-corner-color, #FFFFFF);
+  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+  border-radius: var(--scrollbar-border-radius, 4px);
+}
+::-webkit-scrollbar-button:vertical:start:increment,
+#preview::-webkit-scrollbar-button:vertical:end:decrement,
+#preview::-webkit-scrollbar-button:horizontal:start:increment,
+#preview::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: var(--show-double-buttons, none);
 }
