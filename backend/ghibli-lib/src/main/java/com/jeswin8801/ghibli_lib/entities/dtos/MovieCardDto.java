@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 @Builder
 public class MovieCardDto {
-    String name;
-    Integer year;
-    String poster;
-    Integer duration;
+    private String name;
+    private Integer year;
+    private String poster;
+    private Integer duration;
 }

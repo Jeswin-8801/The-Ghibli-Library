@@ -29,6 +29,6 @@ public class Movie {
     private Double malScore;
     @Field("imdb-score")
     private Double imdbScore;
-    private String synopsys;
+    private String synopsis;
     private List<String> images;
 }

@@ -4,31 +4,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Builder
 public class MovieInfoDto {
     @JsonProperty(required = true)
-    String name;
+    private String name;
     @JsonProperty("alternate-titles")
-    List<String> alternateTitles;
-    Integer year;
-    String poster;
+    private List<String> alternateTitles;
+    private Integer year;
+    private String poster;
     @JsonProperty("background-image")
-    String backgroundImage;
-    String director;
-    String producer;
-    String music;
-    Integer duration;
+    private String backgroundImage;
+    private String director;
+    private String producer;
+    private String music;
+    private Integer duration;
     @JsonProperty("release-date")
-    String releaseDate;
-    String type;
+    private String releaseDate;
+    private String type;
     @JsonProperty("mal-score")
-    Double malScore;
+    private Double malScore;
     @JsonProperty("imdb-score")
-    Double imdbScore;
-    String synopsys;
-    List<String> images;
+    private Double imdbScore;
+    private String synopsis;
+    private List<String> images;
 }

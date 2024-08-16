@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 @Builder
 public class MovieCardListDto {
-    List<MovieCardDto> movies;
+    private List<MovieCardDto> movies;
 }
