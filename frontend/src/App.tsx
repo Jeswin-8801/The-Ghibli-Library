@@ -56,6 +56,4 @@ function App() {
 
 export default App;
 
-// https://www.formyanime.com/2024/04/studio-ghibli-ultra-widescreen-wallpaper.html
 // https://drive.google.com/drive/folders/1RPcT-Jm0i2h7cIh0OHRnP_sxjU5pYq2h
-// https://myanimelist.net/anime/199/Sen_to_Chihiro_no_Kamikakushi

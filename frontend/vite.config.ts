@@ -13,6 +13,5 @@ export default defineConfig({
         port: 8082,
         strictPort: true,
         host: true,
-        origin: "http://0.0.0.0:8082",
     },
 })

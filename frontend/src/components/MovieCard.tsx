@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import NotFound from "../assets/404.gif";
 
 interface Results {
@@ -12,8 +13,15 @@ interface Media {
 }
 
 function MovieCard({ media }: Results) {
+    const navigate = useNavigate();
+
     return (
-        <div className="movie">
+        <div
+            className="movie"
+            onClick={() => {
+                navigate(`/${media.name}`);
+            }}
+        >
             <div>
                 <p>{media.year.toString()}</p>
             </div>
