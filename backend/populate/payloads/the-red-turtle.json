@@ -1,8 +1,6 @@
 {
     "name": "The Red Turtle",
-    "alternate-titles": [
-      "La Tortues Rouge"
-    ],
+    "alternate-titles": ["La Tortues Rouge"],
     "year": 2016,
     "poster": "https://www.ghibli.jp/images/red-turtle.jpg",
     "background-image": "https://www.ghibli.jp/gallery/redturtle029.jpg",
@@ -16,8 +14,8 @@
     "imdb-score": 7.5,
     "synopsis": "A man is shipwrecked on a deserted island and encounters a big red turtle, which changes his life.",
     "images": [
-      "https://www.ghibli.jp/gallery/redturtle007.jpg",
-      "https://www.ghibli.jp/gallery/redturtle028.jpg",
-      "https://www.ghibli.jp/gallery/redturtle017.jpg"
+        "https://www.ghibli.jp/gallery/redturtle007.jpg",
+        "https://www.ghibli.jp/gallery/redturtle028.jpg",
+        "https://www.ghibli.jp/gallery/redturtle017.jpg"
     ]
 }
