@@ -9,21 +9,15 @@ A full-stack movie cataloging application that lets you add and browse through a
 
 # Setup
 
-In the base directory run `docker compose up -d`
+In the base directory run
+
+`docker-compose up -d`
 
 > wait a few minutes until all the containers are up and running
 
-> populate the DB with data using populate.sh
+### Access the website at http://localhost:5173/
 
-```bash
-cd backend/populate
-chmod +x populate.sh
-./populate.sh
-```
-
-### The website can now be accessed at http://localhost:5173/
-
-> Goto http://localhost:8081/ to view all database entries through `mongo-express`
+> Goto http://localhost:8081/ to view all movie entries in mongoDB through `mongo-express`
 
 <br/>
 
