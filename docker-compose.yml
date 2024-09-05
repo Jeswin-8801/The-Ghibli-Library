@@ -38,8 +38,26 @@ services:
         stdin_open: true
         tty: true
 
+    setup-populate-db:
+        image: alpine/curl
+        depends_on:
+            - spring-boot
+        restart: no
+        volumes:
+            - ./backend/populate:/data/populate
+        entrypoint: >
+            /bin/sh -c '
+                isAlive() { curl --silent --request GET http://spring-boot:${SPRING_DOCKER_PORT}/actuator/health | grep UP; }
+                while ! isAlive; do sleep 1; done
+                cd /data/populate
+                ./populate.sh
+                exit 0;
+            '
+
     react:
         build: ./frontend
+        depends_on:
+            - setup-populate-db
         environment:
             NODE_ENV: production
         ports:
