@@ -34,10 +34,9 @@ function SearchableDropdown({ api_url, searchMovies }: Search) {
             const data = await response.json();
             let tempArray: string[] = [];
             data.map((movieName: FetchMovieNameDto) => {
-                if (!movieNamesList.includes(movieName.name))
-                    tempArray.push(movieName.name);
+                tempArray.push(movieName.name);
             });
-            setMovieNamesList([...movieNamesList, ...tempArray]);
+            setMovieNamesList(tempArray);
             setIsOpen(true);
         } else setMovieNamesList(Array());
     };
